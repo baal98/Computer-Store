@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+
+namespace ConsoleApp5
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            double budget = 0;
+
+            string command = string.Empty;
+
+            while (command != "special" || command != "regular")
+            {
+                command = Console.ReadLine();
+
+                if (command == "special" || command == "regular")
+                {
+                    break;
+                }
+                double price = double.Parse(command);
+
+                if (price < 0)
+                {
+                    Console.WriteLine("Invalid price!");
+                    continue;
+                }
+                budget += price;
+            }
+            double budgetWithTaxes = budget * 1.2;
+            double taxes = budgetWithTaxes - budget;
+            if (budgetWithTaxes == 0)
+            {
+                Console.WriteLine("Invalid order!");
+                return;
+            }
+            if (command == "special")
+            {
+                budgetWithTaxes *= 0.9;
+            }
+            //else if (command == "regular")
+            //{
+            //    budgetWithTaxes *= 0.9;
+            //}
+            Console.WriteLine("Congratulations you've just bought a new computer!");
+            Console.WriteLine($"Price without taxes: {budget:F2}$");
+            Console.WriteLine($"Taxes: {taxes:F2}$");
+            Console.WriteLine("-----------");
+            Console.WriteLine($"Total price: {budgetWithTaxes:F2}$");
+        }
+    }
+}
